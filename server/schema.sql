@@ -1,0 +1,51 @@
+CREATE DATABASE IF NOT EXISTS game_review_and_rating_system_db;
+USE game_review_and_rating_system_db;
+
+CREATE TABLE GENRES (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE PLATFORMS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE USERS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE GAMES (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    release_date DATE,
+    developer VARCHAR(255),
+    genre_id INT,
+    image_url VARCHAR(2048),
+    average_rating DECIMAL(4, 2) DEFAULT 0,
+    FOREIGN KEY (genre_id) REFERENCES GENRES(id) ON DELETE SET NULL
+);
+
+CREATE TABLE REVIEWS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    game_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating INT CHECK (rating >= 1 AND rating <= 10),
+    review_text TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (game_id) REFERENCES GAMES(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE
+);
+
+CREATE TABLE GAME_PLATFORMS (
+    game_id INT NOT NULL,
+    platform_id INT NOT NULL,
+    PRIMARY KEY (game_id, platform_id),
+    FOREIGN KEY (game_id) REFERENCES GAMES(id) ON DELETE CASCADE,
+    FOREIGN KEY (platform_id) REFERENCES PLATFORMS(id) ON DELETE CASCADE
+);

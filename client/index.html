@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault | Reviews & Ratings</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i> Game<span>Vault</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" id="nav-home" class="active">Home</a></li>
+                <li><a href="#" id="nav-games">Games</a></li>
+                <li id="auth-links">
+                    <a href="#" id="nav-login">Login</a>
+                    <a href="#" id="nav-signup" class="btn-primary">Sign Up</a>
+                </li>
+                <li id="user-info" class="hidden">
+                    <span id="username-display"></span>
+                    <a href="#" id="nav-logout">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app-content">
+        <!-- Content will be dynamically loaded here -->
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 GameVault. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
