@@ -1,0 +1,47 @@
+erDiagram
+    USERS ||--o{ REVIEWS : "writes"
+    GAMES ||--o{ REVIEWS : "receives"
+    GENRES ||--o{ GAMES : "categorizes"
+    GAMES }|--|{ PLATFORMS : "available_on"
+
+    USERS {
+        int id PK
+        string username
+        string email
+        string password_hash
+        timestamp created_at
+    }
+
+    GAMES {
+        int id PK
+        string title
+        text description
+        date release_date
+        string developer
+        int genre_id FK
+        decimal average_rating
+    }
+
+    REVIEWS {
+        int id PK
+        int game_id FK
+        int user_id FK
+        int rating
+        text review_text
+        timestamp created_at
+    }
+
+    GENRES {
+        int id PK
+        string name
+    }
+
+    PLATFORMS {
+        int id PK
+        string name
+    }
+
+    GAME_PLATFORMS {
+        int game_id FK
+        int platform_id FK
+    }
